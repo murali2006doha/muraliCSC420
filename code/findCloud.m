@@ -1,20 +1,8 @@
 function [ptc, ptc_rs] = findCloud(imname, imset)
 
-disparityRange = [-6 10];   %parameter for matlab disparity function
-    patch_size = 15;    %parameter for matlab disparity function
-    
-%get left and right of current imageid 
-        left_imdata = getData(imname, imset, 'left');
-        left_img = rgb2gray(double(left_imdata.im)/255);
-        right_imdata = getData(imname, imset, 'right');
-        right_img = rgb2gray(double(right_imdata.im)/255);
-        
-%find the disparity between left and right image
-        disp = disparity(left_img,right_img,'BlockSize',patch_size,'DisparityRange',disparityRange);
+findDisparity(imname, imset);
 
-% disp = getDisparity(imset, imname);
-
-% disp = getData(imname, imset, 'disp');
+disp = getData(imname, imset, 'disp');
 calib = getData(imname, imset, 'calib');
 
 depth = findDepth(disp, calib);

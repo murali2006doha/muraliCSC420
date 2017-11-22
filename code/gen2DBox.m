@@ -1,15 +1,15 @@
-dir_pic = 'data/test/left';
-dir_res = 'data/test/results/';
-dir_road = 'data/test/predroad/';
+dir_pic = '../data/test/left/';
+dir_res = '../data/test/results/';
+dir_road = '../data/test/predroad/';
 list_pic = dir(dir_pic);
 n_pic = size(list_pic, 1);
 thres = -0.7;
 % n_pic = 5;
 frame_rate = 1;
-for i = 1:n_pic
+for i = 4:n_pic
     pic_name = list_pic(i).name;
     if size(pic_name, 2) > 4 && strcmp(pic_name(end-3:end), '.png')
-        im = imread(strcat(dir_pic, '/', pic_name));
+        im = imread(strcat(dir_pic, pic_name));
         pic_name = pic_name(1:end-4);
         out_file = {'frames/', pic_name};
         predroad = imread(strcat(dir_road, pic_name, '_predroad.png'));

@@ -9,7 +9,7 @@ data = getData([], imset, 'list'); ids = data.ids;
 k = 1000; %modify to change the size of training set
 X = []; 
 Y = [];
-num_train = 10;
+num_train = 1;
 for i = 1:num_train
     imname = ids{i}(1:end-4); i
     %% load image & calibration & disparity & ground truth
@@ -23,6 +23,7 @@ for i = 1:num_train
     %% generate labels y (local)
     image_gt = getData(imname, imset,'gt-left-road');
     gt = min((255 - image_gt.gt(:,:,1)) + image_gt.gt(:,:,3),255)/255;
+% binary value that tells if its road or not
     y = reshape(gt, [image_sy * image_sx 1]);
     y = y(idx,:);
 
